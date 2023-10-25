@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<ul>
+    {% for vacancy in vacant_position_list %}
+    <li>
+        <h3> {{vacancy.company_name}} </h3>
+
+        <p> Role in Company: {{ vacancy.role}}</p>
+        
+
+        <p> Experience Required: {{vacancy.exp}}</p>
+    </li>
+    <button> Apply </button>
+
+    {% endfor %}
+</ul>
+
+{% endblock %}
