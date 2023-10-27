@@ -1,19 +1,129 @@
-{% extends 'base.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar{
+            background-color: #31CA4C;
+        }
+        body{
+            background-image: url("{%static 'images/back.webp'%}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .idk {
+            list-style-type: none;
+            padding: 0;
+        }
 
-{% block content %}
-<ul>
-    {% for vacancy in vacant_position_list %}
-    <li>
-        <h3> {{vacancy.company_name}} </h3>
+        .kdi {
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
 
-        <p> Role in Company: {{ vacancy.role}}</p>
+        h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        p {
+            margin: 0;
+        }
+        #apply{
+          background-color: red;
+          border-radius: 10px;
+          margin: 5px;
+        }
+        #apply a{
+          color: white;
+          padding: 5px;
+          margin: 5px;
+        }
+        #apply:hover{
+          background-color: rgb(229, 94, 94);
+        }
+        #lol {
+            display: block;
+            padding: 10px;
+            background-color: #45a049;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        #lol:hover{
+            background-color: #48db81;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body style="background-color: #00B374;">
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"> <img src="{% static 'images/icon.svg' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> Connect-In</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item" id="apply">
+                <a class="nav-link" href="{% url 'details'%}"> Apply for Job</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}" style="margin: 5px;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}" style="margin: 5px;">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="jumbotron big-banner" style="height : 500px; padding-top: 50px; color:#008DFF">
+    <div class="container">
         
+  <ul class="idk">
+    {% for vacancy in vacant_position_list %}
+   
+    <form method="get" action="{%url 'apply' vacancy.id %}">
+    <li class="kdi">
+        <h3 style="color:black; font-weight: 500;"> {{vacancy.company_name}} </h3>
+  
+        <hr style="color:grey">
+        <p style="color:black; font-weight: 400;"> Role:
+             <p style="color:black; opacity: 0.7;">{{ vacancy.role}}</p></p>
 
-        <p> Experience Required: {{vacancy.exp}}</p>
+             <p style="color:black; font-weight: 400;"> About Us:
+              <p style="color:black; opacity: 0.7;">{{ vacancy.company_description}}</p></p>
+        
+             <p style="color:black; font-weight: 400;"> Descrtiption of Role:
+              <p style="color:black; opacity: 0.7;">{{ vacancy.role_description}}</p></p>
+
+
+        <p style="color:black; font-weight: 400;"> Experience required:
+            <p style="color:black; opacity: 0.7;">{{ vacancy.exp}} yrs</p></p>
+        
+        <button id="lol" type="submit"> Apply </button>
     </li>
-    <button> Apply </button>
-
+  </form>
     {% endfor %}
 </ul>
-
-{% endblock %}
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

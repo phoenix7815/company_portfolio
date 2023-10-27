@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Info</title>
+    <style>
+      .navbar{
+          background-color: #31CA4C;
+      }
+      body{
+          background-image: url("{%static 'images/jumb.jpg'%}");
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+      }
+
+      form {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        tr {
+            line-height: 2;
+            margin: 8px;
+        }
+
+        td:first-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #9fcda1;
+        }
+
+        
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body style="background-color: #00B374;">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> <img src="{%static 'images/icon.svg'%}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> Connect-In</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <section class="vh-100">
+    <div class="container-fluid h-custom" style="margin-top:50px">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <form method="post" action="{% url 'extradetails'%}" style="width:fit-content; height: 1100px; margin: 10%;" >
+                {% csrf_token %}
+            
+                <table style="height: 900px;">
+                    <h4 style="text-align: center;">Hello {{form.username.value}}</h4>
+                    <input type="hidden" name="username" value="{{ form.username.value }}" />
+                   
+                    <tr >
+                        <td>{{ form.first_name.label_tag }}</td>
+                        <td>{{ form.first_name }}</td>
+                    </tr>
+            
+                    <tr>
+                        <td>{{ form.last_name.label_tag }}</td>
+                        <td>{{ form.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.description.label_tag }}</td>
+                        <td>{{ form.description }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.phone_no.label_tag }}</td>
+                        <td>{{ form.phone_no }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.email.label_tag }}</td>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.age.label_tag }}</td>
+                        <td>{{ form.age }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.known_skills.label_tag }}</td>
+                        <td>{{ form.known_skills }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.role.label_tag }}</td>
+                        <td>{{ form.role}}</td>
+                    </tr>
+                   
+                </table>
+                <button type="submit"> Register </button>
+                    {% if form.errors %}
+                        <p>{{form.errors}}</p>
+                    {% endif %}
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
+
+
+
+

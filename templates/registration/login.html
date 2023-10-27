@@ -1,29 +1,128 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login</title>
+    <style>
+      .navbar{
+          background-color: #31CA4C;
+      }
+      body{
+          background-image: url("{% static 'images/image.jpg' %}");
+          /* background-image: url("{% static 'images/jumb.jpg' %}"); */
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+      }
+
+      form {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        tr {
+            line-height: 2;
+            height: 100px;
+        }
+
+        td:first-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .idk{
+          margin: 2px 4px;
+        }
+      
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
-<body>
-    <h1>WELCOME TO LOGIN PAGE</h1>
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <table>
-          <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-          </tr>
-          <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-          </tr>
-        </table>
-        <input type="submit" value="login">
-        <input type="hidden" name="next" value="{{ next }}">
-      </form>
-      {% if form.errors %}
-      <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
+<body style="background-color: #00B374;">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> <img src="{% static 'images/icon.svg' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> Connect-In</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'login' %}" style="margin: 5px;">Login </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'register' %}" style="margin: 5px;">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <section class="vh-100">
+      <div class="container-fluid h-custom" style="margin-top:50px">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              class="img-fluid" alt="Sample image">
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="height: 500px; margin-top: 100px;">
+            <form method="post" action="{% url 'login' %}" style="height: 430px;width: 350px;">
+              {% csrf_token %}
+              <h2 style="text-align: center;"> Login </h2>
+              <table style="height: 250px;">
+                <div class="idk">
+                  <tr>
+                      <td>{{ form.username.label_tag }}</td>
+                      <td>{{ form.username }}</td>
+                  </tr>
+                </div>
+                  <tr class="idk">
+                      <td>{{ form.password.label_tag }}</td>
+                      <td>{{ form.password }}</td>
+                  </tr>
+              </table>
+              <input type="submit" value="login">
+              <input type="hidden" name="next" value="{{ next }}">
+              {% if form.errors %}
+              <p class="error-message" style="color: red;">Your username and password didn't match. Please try again.</p>
+              {% endif %}
+          </form>
+         
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>

@@ -1,21 +1,107 @@
-{%extends 'base.html'%}
 
-{% block content%}
-    <h2>Welcome {{request.user.username}} </h2>
-    <ul>
-        {% for detail in userdetails%}
-        <li> Name: {{detail.name}}  </li>
-        <li> Age: {{detail.age}}  </li>
-        
-            <li>Your skills are:</li>
-            {% for skill in detail.known_skills.all %}
-              <li>{{skill.skill_name}} </li>
-            {% endfor %}
-        <li> Roles You want to apply for ::</li>
-        {% for role in detail.role.all %}
-        <li> {{role.position_name}}</li>
-        {%endfor%}
-        {%endfor%}
-        <a href="{% url 'details'%}">  Company details</a>
-    </ul>
+{% extends 'base.html'%}
+{% load static%}
+    {% block content %}
+    {% for detail in userdetails%}
+            <section class="vh-50">
+                <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col col-lg-6 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-0">
+                        <div class="col-md-4 gradient-custom text-center text-white"
+                            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                            <img src="{% static 'images/add-photo.png'%}"
+                            alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                            <h5 style="color:black">{{request.user.username}}</h5>
+                            <p style="color:black">USER</p>
+                            <i class="far fa-edit mb-5"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                            <h6>Personal Information</h6>
+                            <hr class="mt-0 mb-4">
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                <h6>Name</h6>
+                                <p class="text-muted">{{detail.first_name}} {{detail.last_name}}</p>
+                                </div>
+                               
+                                <div class="col-6 mb-3">
+                                <h6>Age</h6>
+                                <p class="text-muted">{{detail.age}}</p>
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                <h6>Email</h6>
+                                <p class="text-muted">{{detail.email}}</p>
+                                </div>
+                                <div class="col-6 mb-3">
+                                <h6>Phone</h6>
+                                <p class="text-muted">{{detail.phone_no}}</p>
+                                </div>
+                            </div>
+                            <h6>Portfolio</h6>
+                            <hr class="mt-0 mb-4">
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                <h6>Skills</h6>
+                                <p class="text-muted">
+                                    {% for skill in detail.known_skills.all %}
+                                    {{skill.skill_name}}
+                                    <br>
+                                    {% endfor %}
+                                </p>
+                                </div>
+                                <div class="col-6 mb-3">
+                                <h6>Role</h6>
+                                <p class="text-muted">
+                                    {% for role in detail.role.all %}
+                                    {{role.position_name}}
+                                    <br>
+                                    {%endfor%}
+                                </p>
+                                </div>
+                                <h6>About me</h6>
+                                <hr class="mt-0 mb-4">
+                                <div class="row pt-1">
+                                  
+                                    <p class="text-muted">
+                                      {{detail.description}}  
+                                    </p>
+                                   
+                                </div>
+                                <h6>Companies Applied</h6>
+                                <hr class="mt-0 mb-4">
+                                <div class="row pt-1">
+                                    <p class="text-muted">
+                                        {% for skill in detail.application.all %}
+                                        {{skill.company_name}}: {{skill.role}}
+                                        <br>
+                                        {% endfor %}
+                                    </p>
+                                   
+                                </div>    
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                                <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                                <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                            </div>
+                            </div>
+                             
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </section>
+        </div>
+    </div>
+     {%endfor%}
+  
+
 {% endblock %}
