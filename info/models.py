@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -13,14 +14,17 @@ class position(models.Model):
     def __str__(self):
         return self.position_name
 
+
 class vacant_position(models.Model):
     
+    username=models.CharField(max_length=100,primary_key=True)
     company_name=models.CharField(max_length=100)
-
-    company_description=models.TextField(max_length=400,help_text="Enter Description about Company",null=True)
+    email=models.EmailField(null=True)
+    company_description=models.TextField(max_length=2000,help_text="Enter Description about Company",null=True)
     role=models.ForeignKey(position,on_delete=models.CASCADE,help_text="Select position for the company")
-    role_description=models.TextField(max_length=400,help_text="Enter description about Role..",null=True)
+    role_description=models.TextField(max_length=2000,help_text="Enter description about Role..",null=True)
     exp=models.IntegerField(default=0)
+    workplace=models.CharField(max_length=100,null=True)
     def __str__(self):
         return str(self.company_name)
    
@@ -34,6 +38,6 @@ class user_details(models.Model):
     email=models.EmailField(null=True)
     phone_no=models.BigIntegerField(null=True)
     description=models.TextField(help_text="Enter about you",null=True)
-    application=models.ManyToManyField(vacant_position,help_text="Applied Companies",null=True)
+    application=models.ManyToManyField(vacant_position,help_text="Applied Companies")
     def __str__(self):
         return str(self.first_name)

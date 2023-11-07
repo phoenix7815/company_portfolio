@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+{% block title%}
+<title>{{details.company_name}}</title>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="card" style=" opacity:0.9;">
+    <div class="card-body" >
+        <form method="get" action="{%url 'apply' details.username %}">
+            <h1 class="card-title">{{details.company_name}}</h1>
+            <p class="card-text">
+                <h4>About us :</h4>
+            <p>{{details.company_description}}</p>
+            <h4>Role description: </h4>
+            <p>{{details.role_description}}</p>
+            <h4> Skills Required:  </h4>
+            <p>
+            {% for skill in skills_reqd.all %}
+                <p>{{skill}}</p>
+            {% endfor %}
+        </p>
+            <h4> Skills Missing:  </h4>
+                {% for skill in skills_missing.all %}
+                   <p> {{skill}}</p>
+                {% endfor %}
+            </p>
+            </p>
+            <button id="lol" type="submit"> Apply </button>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}

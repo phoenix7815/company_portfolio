@@ -84,7 +84,7 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form method="post" action="{% url 'extradetails'%}" style="width:fit-content; height: 1100px; margin: 10%;" >
+            <form method="post" action="{% url 'companydetails'%}" style="width:fit-content; height: 1100px; margin: 10%;" >
                 {% csrf_token %}
             
                 <table style="height: 900px;">
@@ -92,44 +92,35 @@
                     <input type="hidden" name="username" value="{{ form.username.value }}" />
                    
                     <tr >
-                        <td>{{ form.first_name.label_tag }}</td>
-                        <td>{{ form.first_name }}</td>
+                        <td>{{ form.company_name.label_tag }}</td>
+                        <td>{{ form.company_name }}</td>
                     </tr>
             
                     <tr>
-                        <td>{{ form.last_name.label_tag }}</td>
-                        <td>{{ form.last_name }}</td>
+                        <td>{{ form.workplace.label_tag }}</td>
+                        <td>{{ form.workplace }}</td>
                     </tr>
                     <tr>
-                        <td>{{ form.description.label_tag }}</td>
-                        <td>{{ form.description }}</td>
+                        <td>{{ form.company_description.label_tag }}</td>
+                        <td>{{ form.company_description }}</td>
                     </tr>
                     <tr>
-                        <td>{{ form.phone_no.label_tag }}</td>
-                        <td>{{ form.phone_no }}</td>
+                        <td>{{ form.role.label_tag }}</td>
+                        <td>{{ form.role }}</td>
                     </tr>
                     <tr>
                         <td>{{ form.email.label_tag }}</td>
                         <td>{{ form.email }}</td>
                     </tr>
                     <tr>
-                        <td>{{ form.age.label_tag }}</td>
-                        <td>{{ form.age }}</td>
+                        <td>{{ form.role_description.label_tag }}</td>
+                        <td>{{ form.role_description }}</td>
                     </tr>
                     <tr>
-                        <td>{{ form.known_skills.label_tag }}</td>
-                        <td>{{ form.known_skills }}</td>
-                        <!-- <ul>
-                            {% for skill in form.known_skills.all %}
-                                <li>{{ skill.skill_name }}</li>
-                            {% endfor %}
-                        </ul> -->
+                        <td>{{ form.exp.label_tag }}</td>
+                        <td>{{ form.exp }}</td>
                     </tr>
-                    <tr>
 
-                        <td>{{ form.role.label_tag }}</td>
-                        <td>{{ form.role}}</td>
-                    </tr>
                    
                 </table>
                 <!-- -->
@@ -142,10 +133,6 @@
       </div>
     </div>
   </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-

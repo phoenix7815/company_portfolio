@@ -26,4 +26,4 @@ class extra_details(ModelForm):
 class apply(ModelForm):
     class Meta:
         model=vacant_position
-        fields=['id']
+        fields=['username']

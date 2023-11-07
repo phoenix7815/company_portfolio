@@ -80,16 +80,6 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'login' %}" style="margin: 5px;">Login </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{%url 'register' %}" style="margin: 5px;">Register</a>
-          </li>
-        </ul>
-      </div>
     </div>
   </nav>
 
@@ -101,7 +91,7 @@
           class="img-fluid" alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="height: 650px;">
-        <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%; margin-top: 100px;height: 430px;" action="{%url 'registeruser'%}">
+        <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%; margin-top: 100px;height: 430px;" action="{%url 'companyregister'%}">
           {% csrf_token %}
           <table style="height: 250px;">
             
@@ -124,9 +114,9 @@
                   <p>{{form.errors}}</p>
               {% endif %}
               <div class="hmm">
-            <button type="submit" onclick="setFormAction('{{register_user}}')"> Apply for Job </button>
+            <button type="submit"> Hire </button>
           <br />
-          <a href="{% url "login" %}" style="text-decoration: none; color: blue; padding:3%; cursor:pointer; margin: 3px;">Already have an account? Login</a>
+          <a href="{% url "logincompany" %}" style="text-decoration: none; color: blue; padding:3%; cursor:pointer; margin: 3px;">Already have an account? Login</a>
       </form>
     
       </div>

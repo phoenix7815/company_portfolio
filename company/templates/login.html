@@ -11,7 +11,7 @@
           background-color: #31CA4C;
       }
       body{
-          background-image: url("{% static 'images/image.jpg' %}");
+          background-image: url("{% static 'images/jumb.jpg' %}");
           /* background-image: url("{% static 'images/jumb.jpg' %}"); */
           background-repeat: no-repeat;
           background-attachment: fixed;
@@ -67,6 +67,31 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Change to your desired background color */
+  color: #fff; /* Text color */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  justify-content: center;
+  margin-left: 80px !important;
+}
+
+button:hover {
+  background-color: #0056b3; /* Change to your desired hover background color */
+}
+
+/* Optional Button Styles */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a box shadow on focus for accessibility */
+}
+
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -98,7 +123,7 @@
               class="img-fluid" alt="Sample image">
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="height: 500px; margin-top: 100px;">
-            <form method="post" action="{% url 'login' %}" style="height: 430px;width: 350px;">
+            <!-- <form method="post" action="{% url 'login' %}" style="height: 430px;width: 350px;">
               {% csrf_token %}
               <h2 style="text-align: center;"> Login </h2>
               <table style="height: 250px;">
@@ -118,8 +143,29 @@
               {% if form.errors %}
               <p class="error-message" style="color: red;">Your username and password didn't match. Please try again.</p>
               {% endif %}
-          </form>
+          </form> -->
          
+          <form method="POST" action="{% url 'logincompany' %}">
+                {% csrf_token %}
+                
+                <h2 style="text-align: center;"> Login </h2>
+                <table style="height: 250px;">
+                  <div class="idk">
+                    <tr>
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                  </div>
+                    <tr class="idk">
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                </table>
+                <button type="submit"> Login</button>
+                <input type="hidden" name="next" value="{{ next }}">
+                {% if form.errors %}
+                <p class="error-message" style="color: red;">Your username and password didn't match. Please try again.</p>
+                {% endif %}
           </div>
         </div>
       </div>

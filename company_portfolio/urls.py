@@ -21,8 +21,9 @@ from info import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('user/', include('django.contrib.auth.urls')),
+   
     path('info/',include('info.urls')),
     path('',auth.LogoutView.as_view(template_name="signup.html"),name="logout"),
-    path('',views.signup,name="register")
+    path('',views.signup,name="register"),
+    path('company/',include('company.urls'))
 ]
